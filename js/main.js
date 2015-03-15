@@ -15,6 +15,7 @@ jQuery(document).ready(function() {
   var markerBy = function(address, name) {
 
     var geocoder = new google.maps.Geocoder();
+
     geocoder.geocode(address, function(results) {
 
       var marker = new google.maps.Marker({
@@ -29,11 +30,14 @@ jQuery(document).ready(function() {
 
   var markerLocations = [
     { address: "Shop 7 Degraves Street Melbourne VIC 3000", name: "Little Cupcakes" },
-    { address: "Grill'd Degraves Street", name: "Grill'd" }
+    { address: "Grilld Degraves Street", name: "Grill'd" }
   ];
 
-  $.each(markerLocations, function(index, location) {
-    markerBy(location.address, location.name);
-  });
+  markerBy(markerLocations[0].address, markerLocations[0].name);
+  markerBy(markerLocations[1].address, markerLocations[1].name);
+
+//  $.each(markerLocations, function(index, location) {
+//    markerBy(location.address, location.name);
+//  });
 
 });
