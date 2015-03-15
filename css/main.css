@@ -1,8 +1,31 @@
-
-
 /* ==========================================================================
-   Author's custom styles
+   Custom Styles
+   Depends: Bootstrap 3.3.2
    ========================================================================== */
+
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.map {
+  height:400px;
+  background-color: #eeeeee;
+}
+
+.main-content {
+  margin-top: 50px;
+}
+
+input#search {
+  width: 350px;
+}
+
+.thumbnail {
+  height: 92px;
+  width: 92px;
+}
 
 
 
