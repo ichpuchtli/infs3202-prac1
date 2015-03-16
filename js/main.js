@@ -12,32 +12,10 @@ jQuery(document).ready(function() {
 
   var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-  var markerBy = function(address, name) {
-
-    var geocoder = new google.maps.Geocoder();
-
-    geocoder.geocode(address, function(results) {
-
-      var marker = new google.maps.Marker({
-        map: map,
-        position: results[0].geometry.location,
-        title: title
-      });
-
-    });
-
-  }
-
-  var markerLocations = [
-    { address: "Shop 7 Degraves Street Melbourne VIC 3000", name: "Little Cupcakes" },
-    { address: "Grilld Degraves Street", name: "Grill'd" }
-  ];
-
-  markerBy(markerLocations[0].address, markerLocations[0].name);
-  markerBy(markerLocations[1].address, markerLocations[1].name);
-
-//  $.each(markerLocations, function(index, location) {
-//    markerBy(location.address, location.name);
-//  });
+  var marker = new google.maps.Marker({
+    map: map,
+    position: new google.maps.LatLng(-37.817607, 144.965901) ,
+    title: '' // , icon: 'img/grilldlogo.jpeg'
+  });
 
 });
