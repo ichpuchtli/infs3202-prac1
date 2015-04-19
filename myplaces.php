@@ -97,11 +97,11 @@
   </div>
 </div>
 
-<? ob_start(); // custom js ?>
+<?php ob_start(); // custom js ?>
 
 <script src="js/lightbox.js"></script>
 <script src="js/jquery.searchable-1.1.0.min.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBL5l-Lz9gJox_JGXWFqRoI8DN-3CAwqBY"></script>
 <script type="text/javascript" src="js/main.js"></script>
 
-<? $js = ob_get_clean(); ?>
+<?php $js = ob_get_clean(); ?>

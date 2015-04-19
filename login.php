@@ -3,9 +3,9 @@
   $title = 'Login';
 ?>
 
-<? ob_start(); // custom css ?>
-<link rel="stylesheet" href="css/signin.css">';
-<? $css = ob_get_clean(); ?>
+<?php ob_start(); // custom css ?>
+<link rel="stylesheet" href="css/signin.css">
+<?php $css = ob_get_clean(); ?>
 
 <?php 
   if(@$this->viewbag['error'])
@@ -55,7 +55,7 @@
   <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 </form>
 
-<? ob_start(); // custom js ?>
+<?php ob_start(); // custom js ?>
 
 <script type="text/javascript">
 
@@ -74,4 +74,4 @@ jQuery(document).ready(function() {
 
 </script>
 
-<? $js = ob_get_clean(); ?>
+<?php $js = ob_get_clean(); ?>
