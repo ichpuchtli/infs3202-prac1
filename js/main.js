@@ -64,26 +64,42 @@ jQuery(document).ready(function() {
 
     }
 
+    $('.moreinfo').click(function() {
+
+      var btn = $(this);
+
+      var collapse = btn.next('div');
+
+      if(collapse.hasClass('hidden')){
+        btn.text('Hide');
+      }else{
+        btn.text('More Info');
+      }
+
+      collapse.toggleClass('hidden');
+
+    });
+
     // Try HTML5 geolocation
-    if(navigator.geolocation) {
+    //if(navigator.geolocation) {
 
-      navigator.geolocation.getCurrentPosition(function(position) {
+    //  navigator.geolocation.getCurrentPosition(function(position) {
 
-        var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    //    var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-        var geocoder = new google.maps.Geocoder();
+    //    var geocoder = new google.maps.Geocoder();
 
-        geocoder.geocode({'latLng': pos}, function(data) {
-        
-          $('#location').text(data[3].formatted_address);
-        
-        });
+    //    geocoder.geocode({'latLng': pos}, function(data) {
+    //    
+    //      $('#location').text(data[3].formatted_address);
+    //    
+    //    });
 
-        map.setCenter(pos);
+    //    map.setCenter(pos);
 
-      });
+    //  });
 
-    }
+    //}
 
     //$('a.location').click(function(){
 
@@ -109,20 +125,6 @@ jQuery(document).ready(function() {
       }
     });
 
-
-    setInterval(function() {
-
-      var timeout = parseInt(localStorage.getItem('timeout'));
-
-      var diff = timeout/1000 - new Date().getTime()/1000;
-
-      if(diff > 0){
-        document.title = 'My Places ' + Math.floor(diff/(60 * 60)) + ':' + Math.floor(diff/60) % 60 + ':' + Math.floor(diff) % 60
-      }else{
-        window.location.reload();
-      }
-    
-    }, 1000);
 
 
 });
