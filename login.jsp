@@ -22,7 +22,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">INFS3202 - Admin</a>
+          <a class="navbar-brand" href="/">INFS3202 - Login</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -71,12 +71,12 @@
 
       <div class="form-group">
         <label for="username" class="control-label">Email address</label>
-        <input type="text" name="username" id="username" class="form-control" placeholder="Username" required>
+        <input type="text" name="username" id="username" class="form-control" placeholder="Username" required autocomplete="off">
       </div>
 
       <div class="form-group">
         <label for="password" class="control-label">Password</label>
-        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required autocomplete="off">
       </div>
 
       <button class="btn btn-lg btn-success pull-right" type="submit">Sign in</button>

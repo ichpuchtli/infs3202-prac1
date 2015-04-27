@@ -26,8 +26,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-              <p class="navbar-text pull-right">Sam</p>
-              <li><a href="?login">Login</a></li>
+              <li><a href="login.jsp">Login</a></li>
           </ul>
           <div class="navbar-form navbar-right">
             <div class="form-group has-feedback">
@@ -41,18 +40,6 @@
     </nav>
 
     <div class="container main-content">
-
-      <% 
-
-      if(request.getParameter("page").equals("")){
-
-      } else if(request.getParameter("page").equals("login")){
-
-      } else { 
-
-      }
-
-      %>
       
       <div class="row">
 

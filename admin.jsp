@@ -1,5 +1,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="java.io.*" %>
+<%@ page import="java.nio.channels.FileChannel" %>
+
 
 <!doctype html>
 <html lang="en">
@@ -22,7 +24,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">INFS3202 - Admin</a>
+          <a class="navbar-brand" href="/admin.jsp">INFS3202 - Admin</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -41,7 +43,58 @@
           response.sendRedirect("login.jsp");
       }
 
-      if(request.getParameter("edit") != null && !request.getParameter("edit").equals("")){
+      if(request.getMethod().equals("POST")){
+
+        String metadataPath = session.getServletContext().getRealPath("") + "/metadata.txt";
+
+        File file = new File(metadataPath);
+
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+
+        String line;
+        StringBuilder builder = new StringBuilder();
+
+        while ((line = reader.readLine()) != null) {
+
+          String[] meta = line.split(",");
+
+          String id = meta[0];
+
+          if(id.equals(request.getParameter("id"))){
+
+            String newTitle = request.getParameter("title");
+            String newAddress = request.getParameter("address");
+            String newLat = request.getParameter("latlng").split(",")[0];
+            String newLng = request.getParameter("latlng").split(",")[1];
+            String icon = meta[5];
+            String thumb = request.getParameter("thumb");
+
+            builder.append(id + "," + newTitle + "," + newAddress + "," + newLat + "," + newLng + "," + icon + "," + thumb + "\n");
+
+          }else {
+            builder.append(line + "\n");
+          }
+
+        }
+
+        reader.close();
+
+        file = new File(metadataPath);
+
+        FileChannel outChan = new FileOutputStream(file, true).getChannel();
+        outChan.truncate(0);
+        outChan.close();
+
+        file = new File(metadataPath);
+
+        FileWriter writer = new FileWriter(file);
+        
+        writer.write(builder.toString());
+
+        writer.close();
+
+      }
+      else if(request.getParameter("edit") != null && !request.getParameter("edit").equals("")){
 
         String metadataPath = session.getServletContext().getRealPath("") + "/metadata.txt";
 
@@ -77,27 +130,44 @@
 
       %>
      
-      <form class="form-signin" method="post">
+      <div class="row">
+
+      <form class="col-sm-6" method="post" class="">
+
+        <input type="hidden" name="id" value="<%= id %>" />
 
         <div class="form-group">
         <label class="control-label">Title</label>
-        <input name="title" class="form-control" value="<%= title %>" />
+        <input name="title" class="form-control validate" value="<%= title %>" required/>
+        <p class="alert alert-danger hidden">Title must be more than 4 charactors</p>
       </div>
 
         <div class="form-group">
         <label class="control-label">Address</label>
-        <input name="address" class="form-control" value="<%= address %>" />
+        <input name="address" class="form-control validate" value="<%= address %>" required/>
+        <p class="alert alert-danger hidden">Address is required</p>
       </div>
 
         <div class="form-group">
-        <label class="control-label">Lat Lng</label>
+        <label class="control-label">Latitude & Longitutde</label>
         <input name="latlng" class="form-control" value="<%= lat %>, <%= lng %>" />
       </div>
+
+        <div class="form-group">
+        <label class="control-label">Thumbnail</label>
+        <input name="thumb" class="form-control" value="<%= thumb %>" />
+        </div>
 
       <button type="submit" class="btn btn-primary">Submit</button>
       <a href="admin.jsp" class="btn btn-default">Cancel</a>
 
       </form>
+
+      <img src="img/<%= thumb %>" class="col-sm-6">
+
+    </div>
+      
+    <div class="clearfix"></div>
 
       <hr>
       
@@ -116,8 +186,14 @@
 
       %>
       
-      <table class="table">
+      <table class="table table-bordered">
 
+        <tr>
+          <th>Title</td>
+          <th>Address</td>
+          <th>LatLng</td>
+          <th>Action</td>
+        </tr>
       <%
 
       while ((line = reader.readLine()) != null) {
@@ -135,6 +211,8 @@
         %>
         <tr>
           <td><%= title %></td>
+          <td><%= address %></td>
+          <td><%= lat %>,<%= lng %></td>
           <td><a href="?edit=<%= id %>">Edit</a></td>
         </tr>
         <%
@@ -153,5 +231,29 @@
     <script src="js/vendor/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBL5l-Lz9gJox_JGXWFqRoI8DN-3CAwqBY"></script>
+
+    <script type="text/javascript">
+
+      jQuery(document).ready(function() { 
+
+          $('input.validate').keyup(function() {
+
+            var $input = $(this);
+            var $warning = $input.next('p');
+            var $submit = $input.parents('form').find('input[type=submit]');
+
+            if($input.val() == undefined || $input.val().length < 4 || $input.val() == ""){
+              $warning.removeClass('hidden');
+              $submit.prop('disabled', true);
+            } else {
+              $warning.addClass('hidden');
+              $submit.prop('disabled', false);
+            }
+
+          });
+
+      });
+
+    </script>
     </body>
 </html>

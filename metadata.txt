@@ -1,5 +1,5 @@
-littleCupcakes,Little Cupcakes,Shop 7 Degraves St Melbourne VIC 3000,-37.817525,144.965917,letter_a.png,littlecupcakes1.jpeg
+littleCupcakes,Little cups,Shop 7 Degraves St Melbourne VIC 3000,-37.817525, 113,letter_a.png,littlecupcakes1.jpeg
 grilld,Grill'd Degraves Street,15 Degraves St Melbourne VIC 3000,-37.817368,144.965775,letter_b.png,grilld.jpeg
 youngandjacksons,Young and Jacksons,Swanston Street Melbourne VIC 3000,-37.8173848,144.9665986,letter_c.png,youngandjacksons0.jpeg
-transporthotel,Transport Hotel,Level 2 Corner Flinders Street & Swanston Street Melbourne VIC 3000,-37.818523,144.968193,letter_d.png,transit.jpg
-shebeen,Shebeen,36 Manchester Lane Melbourne VIC 3000,-37.816371,144.966240,letter_e.png,sheben0.jpeg
+transporthotel,Transport Hotel,Corner of Flinders Street Melbourne VIC 3000,-37.818523,    144.968193,letter_d.png,transit.jpg
+shebeen,Shebeen,36 Manchester Lane Melbourne VIC 3000,-37.816371,  144.966240,letter_e.png,sheben0.jpeg
